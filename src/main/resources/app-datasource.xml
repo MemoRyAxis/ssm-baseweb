@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
+		http://www.springframework.org/schema/beans/spring-beans-2.5.xsd">
+
+    <!-- base data source -->
+    <bean id="baseDataSource" class="com.alibaba.druid.pool.DruidDataSource"
+          init-method="init" destroy-method="close">
+        <property name="driverClassName" value="${jdbc.base.driverClassName}"/>
+        <property name="url">
+            <value><![CDATA[${jdbc.base.url}]]></value>
+        </property>
+        <property name="username" value="${jdbc.base.username}"/>
+        <property name="password" value="${jdbc.base.password}"/>
+        <property name="initialSize" value="${jdbc.base.initialSize}"/>
+        <property name="maxActive" value="${jdbc.base.maxActive}"/>
+        <property name="minIdle" value="${jdbc.base.minIdle}"/>
+        <property name="maxWait" value="${jdbc.base.maxWait}"/>
+        <property name="removeAbandoned" value="${jdbc.base.removeAbandoned}"/>
+        <property name="removeAbandonedTimeout" value="${jdbc.base.removeAbandonedTimeout}"/>
+        <property name="timeBetweenEvictionRunsMillis"
+                  value="${jdbc.base.timeBetweenEvictionRunsMillis}"/>
+        <property name="minEvictableIdleTimeMillis"
+                  value="${jdbc.base.minEvictableIdleTimeMillis}"/>
+        <property name="validationQuery" value="${jdbc.base.validationQuery}"/>
+        <property name="testWhileIdle" value="${jdbc.base.testWhileIdle}"/>
+        <property name="testOnBorrow" value="${jdbc.base.testOnBorrow}"/>
+        <property name="testOnReturn" value="${jdbc.base.testOnReturn}"/>
+        <property name="poolPreparedStatements" value="${jdbc.base.poolPreparedStatements}"/>
+        <property name="maxPoolPreparedStatementPerConnectionSize"
+                  value="${jdbc.base.maxPoolPreparedStatementPerConnectionSize}"/>
+        <property name="filters" value="${jdbc.base.filters}"/>
+        <!-- decrypt password -->
+        <property name="connectionProperties" value="config.decrypt=true"/>
+    </bean>
+
+    <!-- second data sources -->
+
+</beans>

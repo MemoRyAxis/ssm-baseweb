@@ -1,0 +1,212 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.memory.user.po.User">
+
+    <resultMap id="User" type="com.memory.user.po.User">
+        <id     column="id"           property="id"           jdbcType="NUMERIC" />
+        <result column="username"     property="username"     jdbcType="VARCHAR" />
+        <result column="password"     property="password"     jdbcType="VARCHAR" />
+        <result column="name"         property="name"         jdbcType="VARCHAR" />
+        <result column="phone"        property="phone"        jdbcType="VARCHAR" />
+        <result column="mail"         property="mail"         jdbcType="VARCHAR" />
+        <result column="id_card"      property="idCard"       jdbcType="VARCHAR" />
+        <result column="address"      property="address"      jdbcType="VARCHAR" />
+        <result column="active"       property="active"       jdbcType="NUMERIC" />
+        <result column="valid"        property="valid"        jdbcType="NUMERIC" />
+        <result column="role_id"      property="roleId"       jdbcType="NUMERIC" />
+        <result column="err_time"     property="errTime"      jdbcType="DATE" />
+        <result column="err_count"    property="errCount"     jdbcType="NUMERIC" />
+        <result column="create_time"  property="createTime"   jdbcType="TIMESTAMP" />
+        <result column="update_time"  property="updateTime"   jdbcType="TIMESTAMP" />
+    </resultMap>
+
+    <sql id="columns">
+        id, username, password, name, phone, mail, id_card, address, active, valid, role_id, err_time, err_count, create_time, update_time
+    </sql>
+    
+    <sql id="dynamicWhere">
+        <where>
+            <if test="id                != null"> AND id           =      #{id} </if>
+            <if test="username          != null"> AND username     LIKE   #{username} </if>
+            <if test="password          != null"> AND password     LIKE   #{password} </if>
+            <if test="name              != null"> AND name         LIKE   #{name} </if>
+            <if test="phone             != null"> AND phone        LIKE   #{phone} </if>
+            <if test="mail              != null"> AND mail         LIKE   #{mail} </if>
+            <if test="idCard            != null"> AND id_card      LIKE   #{idCard} </if>
+            <if test="address           != null"> AND address      LIKE   #{address} </if>
+            <if test="active            != null"> AND active       =      #{active} </if>
+            <if test="valid             != null"> AND valid        =      #{valid} </if>
+            <if test="roleId            != null"> AND role_id      =      #{roleId} </if>
+            <if test="errTime           != null"> AND err_time     =      #{errTime, jdbcType=DATE} </if>
+            <if test="beginErrTime      != null"> AND err_time     &gt;=  #{errTime, jdbcType=DATE} </if>
+            <if test="endErrTime        != null"> AND err_time     &lt;=  #{errTime, jdbcType=DATE} </if>
+            <if test="errCount          != null"> AND err_count    =      #{errCount} </if>
+            <if test="createTime        != null"> AND create_time  =      #{createTime, jdbcType=DATE} </if>
+            <if test="beginCreateTime   != null"> AND create_time  &gt;=  #{createTime, jdbcType=DATE} </if>
+            <if test="endCreateTime     != null"> AND create_time  &lt;=  #{createTime, jdbcType=DATE} </if>
+            <if test="updateTime        != null"> AND update_time  =      #{updateTime, jdbcType=DATE} </if>
+            <if test="beginUpdateTime   != null"> AND update_time  &gt;=  #{updateTime, jdbcType=DATE} </if>
+            <if test="endUpdateTime     != null"> AND update_time  &lt;=  #{updateTime, jdbcType=DATE} </if>
+        </where>
+    </sql>
+
+    <insert id="add" parameterType="com.memory.user.po.User">
+        INSERT INTO
+            user
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="username     != null"> username, </if>
+            <if test="password     != null"> password, </if>
+            <if test="name         != null"> name, </if>
+            <if test="phone        != null"> phone, </if>
+            <if test="mail         != null"> mail, </if>
+            <if test="idCard       != null"> id_card, </if>
+            <if test="address      != null"> address, </if>
+            <if test="active       != null"> active, </if>
+            <if test="valid        != null"> valid, </if>
+            <if test="roleId       != null"> role_id, </if>
+            <if test="errTime      != null"> err_time, </if>
+            <if test="errCount     != null"> err_count, </if>
+            <if test="createTime   != null"> create_time, </if>
+            <if test="updateTime   != null"> update_time, </if>
+        </trim>
+        VALUES
+            <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="username     != null"> #{username, jdbcType=VARCHAR}, </if>
+            <if test="password     != null"> #{password, jdbcType=VARCHAR}, </if>
+            <if test="name         != null"> #{name, jdbcType=VARCHAR}, </if>
+            <if test="phone        != null"> #{phone, jdbcType=VARCHAR}, </if>
+            <if test="mail         != null"> #{mail, jdbcType=VARCHAR}, </if>
+            <if test="idCard       != null"> #{idCard, jdbcType=VARCHAR}, </if>
+            <if test="address      != null"> #{address, jdbcType=VARCHAR}, </if>
+            <if test="active       != null"> #{active, jdbcType=NUMERIC}, </if>
+            <if test="valid        != null"> #{valid, jdbcType=NUMERIC}, </if>
+            <if test="roleId       != null"> #{roleId, jdbcType=NUMERIC}, </if>
+            <if test="errTime      != null"> #{errTime, jdbcType=DATE}, </if>
+            <if test="errCount     != null"> #{errCount, jdbcType=NUMERIC}, </if>
+            <if test="createTime   != null"> #{createTime, jdbcType=TIMESTAMP}, </if>
+            <if test="updateTime   != null"> #{updateTime, jdbcType=TIMESTAMP}, </if>
+        </trim>
+    </insert>
+
+    <insert id="addAll" parameterType="com.memory.user.po.User">
+        INSERT INTO 
+            user
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            username,
+            password,
+            name,
+            phone,
+            mail,
+            id_card,
+            address,
+            active,
+            valid,
+            role_id,
+            err_time,
+            err_count,
+            create_time,
+            update_time,
+        </trim>
+        VALUES 
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            #{username, jdbcType=VARCHAR},
+            #{password, jdbcType=VARCHAR},
+            #{name, jdbcType=VARCHAR},
+            #{phone, jdbcType=VARCHAR},
+            #{mail, jdbcType=VARCHAR},
+            #{idCard, jdbcType=VARCHAR},
+            #{address, jdbcType=VARCHAR},
+            #{active, jdbcType=NUMERIC},
+            #{valid, jdbcType=NUMERIC},
+            #{roleId, jdbcType=NUMERIC},
+            #{errTime, jdbcType=DATE},
+            #{errCount, jdbcType=NUMERIC},
+            #{createTime, jdbcType=TIMESTAMP},
+            #{updateTime, jdbcType=TIMESTAMP},
+        </trim>
+    </insert>
+    
+    <delete id="delById" parameterType="java.lang.Long">
+        DELETE FROM 
+            user
+        WHERE
+            id = #{id}
+    </delete>
+    
+    <update id="update" parameterType="com.memory.user.po.User">
+        UPDATE 
+            user 
+        <trim prefix="SET" suffixOverrides=",">
+            <if test="username     != null"> username     = #{username, jdbcType=VARCHAR}, </if>
+            <if test="password     != null"> password     = #{password, jdbcType=VARCHAR}, </if>
+            <if test="name         != null"> name         = #{name, jdbcType=VARCHAR}, </if>
+            <if test="phone        != null"> phone        = #{phone, jdbcType=VARCHAR}, </if>
+            <if test="mail         != null"> mail         = #{mail, jdbcType=VARCHAR}, </if>
+            <if test="idCard       != null"> id_card      = #{idCard, jdbcType=VARCHAR}, </if>
+            <if test="address      != null"> address      = #{address, jdbcType=VARCHAR}, </if>
+            <if test="active       != null"> active       = #{active, jdbcType=NUMERIC}, </if>
+            <if test="valid        != null"> valid        = #{valid, jdbcType=NUMERIC}, </if>
+            <if test="roleId       != null"> role_id      = #{roleId, jdbcType=NUMERIC}, </if>
+            <if test="errTime      != null"> err_time     = #{errTime, jdbcType=DATE}, </if>
+            <if test="errCount     != null"> err_count    = #{errCount, jdbcType=NUMERIC}, </if>
+            <if test="createTime   != null"> create_time  = #{createTime, jdbcType=TIMESTAMP}, </if>
+            <if test="updateTime   != null"> update_time  = #{updateTime, jdbcType=TIMESTAMP}, </if>
+        </trim>
+        WHERE
+            id = #{id}
+    </update>
+    
+    <update id="updateAll" parameterType="com.memory.user.po.User">
+        UPDATE 
+            user 
+        SET 
+            username     = #{username, jdbcType=VARCHAR},
+            password     = #{password, jdbcType=VARCHAR},
+            name         = #{name, jdbcType=VARCHAR},
+            phone        = #{phone, jdbcType=VARCHAR},
+            mail         = #{mail, jdbcType=VARCHAR},
+            id_card      = #{idCard, jdbcType=VARCHAR},
+            address      = #{address, jdbcType=VARCHAR},
+            active       = #{active, jdbcType=NUMERIC},
+            valid        = #{valid, jdbcType=NUMERIC},
+            role_id      = #{roleId, jdbcType=NUMERIC},
+            err_time     = #{errTime, jdbcType=DATE},
+            err_count    = #{errCount, jdbcType=NUMERIC},
+            create_time  = #{createTime, jdbcType=TIMESTAMP},
+            update_time  = #{updateTime, jdbcType=TIMESTAMP}
+        WHERE
+            id = #{id}
+    </update>
+
+    <select id="getById" resultMap="User">
+        SELECT 
+            <include refid="columns" />
+        FROM 
+            user
+        WHERE
+            id = #{id}
+    </select>
+
+    <select id="getAll" resultMap="User">
+        SELECT
+            <include refid="columns" />
+        FROM 
+            user
+        <include refid="dynamicWhere" />
+        <if test="orderField != null and orderSeq != null">
+            ORDER BY
+                ${orderField} ${orderSeq}
+        </if>
+        <if test="start != null and offset != null">
+            LIMIT
+                ${start}, ${offset}
+        </if>
+    </select>
+
+    <select id="getCount" resultType="int">
+        SELECT COUNT(*) FROM 
+            user
+        <include refid="dynamicWhere" />
+    </select>
+
+</mapper>
