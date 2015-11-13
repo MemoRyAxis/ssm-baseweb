@@ -50,7 +50,7 @@ public class JsonpAdvice {
             return value;
         }
 
-        StringBuilder sb = new StringBuilder("(").append(callback);
+        StringBuilder sb = new StringBuilder(callback).append("(");
         if (JSONUtils.mayBeJSON(value.toString())) {
             sb.append(value.toString()).append(");");
         }
