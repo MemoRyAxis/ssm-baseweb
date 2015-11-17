@@ -7,10 +7,11 @@
     <property name="LOG_FILE" value="${LOG_HOME}/${REALM_ID}/${REALM_ID}.%d{yyyy-MM-dd}.log"/>
     <property name="ERROR_FILE" value="${LOG_HOME}/${REALM_ID}/${REALM_ID}.%d{yyyy-MM-dd}.error.log"/>
 
-    <property name="STDOUT_LOG_PATTERN" value="%d{yyyy-MM-dd HH:mm:ss.SSS} %5p --- [%15.15t] %-40.40logger{39} : %m%n"/>
-    <property name="FILE_LOG_PATTERN" value="%d{yyyy-MM-dd HH:mm:ss.SSS} %5p --- [%t] %-40.40logger{39} : %m%n"/>
+    <property name="STDOUT_LOG_PATTERN" value="%magenta(%d{yyyy-MM-dd HH:mm:ss.SSS}) %highlight(%5p) - %yellow([%15.15t]) %cyan(%-40.40logger{39}) : %m%n"/>
+    <property name="FILE_LOG_PATTERN" value="%d{yyyy-MM-dd HH:mm:ss.SSS} %5p - [%t] %-40.40logger{39} : %m%n"/>
 
     <!-- console out -->
+    <!--<appender name="STDOUT" class="com.memory.base.logging.AnsiConsoleAppender">-->
     <appender name="STDOUT" class="ch.qos.logback.core.ConsoleAppender">
         <encoder>
             <pattern>${STDOUT_LOG_PATTERN}</pattern>
@@ -51,7 +52,7 @@
         <triggeringPolicy class="ch.qos.logback.core.rolling.SizeBasedTriggeringPolicy">
             <MaxFileSize>10MB</MaxFileSize>
         </triggeringPolicy>
-</appender>
+    </appender>
 
     <root level="${LOG_LEVEL}">
         <appender-ref ref="STDOUT"/>

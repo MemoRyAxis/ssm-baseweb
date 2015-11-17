@@ -22,7 +22,8 @@ public class UserController extends BaseController {
 
     @Autowired
     UserService userService;
-//
+
+    //
 //    @ResponseBody
 //    @RequestMapping(value = {"/list", "/"}, method = RequestMethod.GET)
 //    public String list(User user) {
@@ -88,6 +89,10 @@ public class UserController extends BaseController {
     @RequestMapping(value = "/tx")
     public String testTx(HttpServletRequest request, HttpServletResponse response) {
         try {
+            log.trace("trace");
+            log.debug("debug");
+            log.info("info");
+            log.error("error");
             userService.getAdd();
             return responseJson(ResponseCode.SUCCESS);
         } catch (Exception e) {
