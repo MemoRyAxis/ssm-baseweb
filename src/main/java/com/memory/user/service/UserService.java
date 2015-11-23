@@ -31,6 +31,9 @@ public class UserService extends BaseService<User, Long> {
         user.setUsername("admin");
         user.setPassword(DigestUtils.md5Hex("123456"));
         userDao.add(user);
+
+        // test roll back
+        userDao.update(null);
     }
 
 }

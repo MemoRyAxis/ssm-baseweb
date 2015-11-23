@@ -16,6 +16,9 @@
     <!-- Tx by spring -->
     <import resource="app-transaction.xml"/>
 
+    <!-- security by shiro -->
+    <import resource="app-shiro.xml"/>
+
     <!-- TODO Quartz -->
 
 </beans>

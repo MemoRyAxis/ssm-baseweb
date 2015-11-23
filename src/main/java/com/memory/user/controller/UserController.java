@@ -102,4 +102,10 @@ public class UserController extends BaseController {
             log.info("finally");
         }
     }
+
+    @ResponseBody
+    @RequestMapping(value = "/ex")
+    public String textEx() throws Exception {
+        throw new Exception("ex");
+    }
 }

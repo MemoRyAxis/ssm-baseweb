@@ -9,9 +9,17 @@ import com.memory.base.model.BaseModel;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.web.bind.annotation.ExceptionHandler;
+import org.springframework.web.bind.annotation.ResponseBody;
 
-import java.util.*;
+import java.util.HashMap;
+import java.util.Iterator;
+import java.util.List;
+import java.util.Map;
 import java.util.Map.Entry;
+import java.util.Set;
+
+import javax.servlet.http.HttpServletRequest;
 
 /**
  * base controller
@@ -26,7 +34,6 @@ public class BaseController {
     protected static final ObjectMapper jsonMapper = new ObjectMapper();
 
     protected static final ResponseCode SUCCESS = ResponseCode.SUCCESS;
-    protected static final ResponseCode FAILURE = ResponseCode.FAILURE;
     protected static final ResponseCode ERROR = ResponseCode.ERROR;
 
     protected static final String JSON_WITH_UTF8 = "application/json;charset=utf-8";
@@ -115,5 +122,12 @@ public class BaseController {
                 .putObject("data").setAll(dataJson);
 
         return json.toString();
+    }
+
+    @ResponseBody
+    @ExceptionHandler
+    protected String exp(HttpServletRequest request, Exception ex) {
+        request.setAttribute("ex", ex);
+        return responseJson(ResponseCode.ERROR);
     }
 }

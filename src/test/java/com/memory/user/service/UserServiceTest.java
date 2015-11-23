@@ -11,16 +11,15 @@ import org.springframework.transaction.annotation.Transactional;
  * @author memoryaxis@gmail.com
  * @date 2015/11/9 11:38
  */
-@Transactional
+//@Transactional
 public class UserServiceTest extends BaseTest {
 
     @Autowired
     UserService userService;
 
     @Test
-    @Rollback(true)
+//    @Rollback(true)
     public void testTx() throws Exception {
         userService.getAdd();
     }
-
 }
