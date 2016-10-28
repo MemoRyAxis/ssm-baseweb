@@ -39,10 +39,6 @@ public class BaseModel implements Serializable {
 
     protected Integer pageNo;
 
-    protected String orderField;
-
-    protected OrderSeq orderSeq;
-
     public Long getCreateBy() {
         return createBy;
     }
@@ -135,23 +131,8 @@ public class BaseModel implements Serializable {
         this.pageNo = pageNo;
     }
 
-    public String getOrderField() {
-        return orderField;
-    }
-
-    public void setOrderField(String orderField) {
-        this.orderField = orderField;
-    }
-
-    public OrderSeq getOrderSeq() {
-        return orderSeq;
-    }
-
-    public void setOrderSeq(OrderSeq orderSeq) {
-        this.orderSeq = orderSeq;
-    }
-
     public Integer getOffset() {
         return offset;
     }
+
 }
